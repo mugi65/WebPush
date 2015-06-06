@@ -1,1 +1,19 @@
-# WebPush.io
+<html>
+  <head>
+    <link rel="manifest" href="./config/manifest.json">
+  </head>
+  <body>
+  <script src="./js/growthpush.min.js"></script>
+  <script>
+    if(GrowthPush){
+      GrowthPush.app = new GrowthPush.App({
+        applicationId: 4789,
+        secret: 'QZCw2iFcENvof1U9deiJwyzbweiYt23W',
+        environment: 'development',
+        receiver: './js/growthpush-receiver.js'
+      });
+      GrowthPush.app.initialize();
+    }
+  </script>
+  </body>
+</html>
