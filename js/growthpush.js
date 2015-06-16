@@ -317,17 +317,14 @@ var GrowthPush;
                     if (!('PushManager' in window)) {
                         return;
                     }
-                    navigator.serviceWorker.ready.then(function (serviceWorkerRegistration) {
-                        console.log(serviceWorkerRegistration);
-                        serviceWorkerRegistration.pushManager.getSubscription().then(function (subscription) {
-                            console.log(subscription);
-                            if (!subscription) {
-                                _this.subscribe();
-                                return;
-                            }
-                            _this.registerClient(subscription.subscriptionId);
-                        }).catch(function (err) {
-                        });
+                    registration.pushManager.getSubscription().then(function (subscription) {
+                        console.log(subscription);
+                        if (!subscription) {
+                            _this.subscribe();
+                            return;
+                        }
+                        _this.registerClient(subscription.subscriptionId);
+                    }).catch(function (err) {
                     });
                 });
             }
