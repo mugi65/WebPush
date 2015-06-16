@@ -301,9 +301,9 @@ var GrowthPush;
             this.receiver = option.receiver;
         }
         App.prototype.initialize = function () {
-            // if(!new GrowthPush.UserAgent().isViewable())
-            // 	return;
             var _this = this;
+            if (!new GrowthPush.UserAgent().isViewable())
+                return;
             if (this.environment == undefined)
                 this.environment = GrowthPush.EnvironmentType.production;
             if ('serviceWorker' in navigator) {
@@ -318,7 +318,6 @@ var GrowthPush;
                         return;
                     }
                     registration.pushManager.getSubscription().then(function (subscription) {
-                        console.log(subscription);
                         if (!subscription) {
                             registration.pushManager.subscribe({ userVisibleOnly: true }).then(function (subscription) {
                                 if (!subscription)
@@ -333,17 +332,6 @@ var GrowthPush;
                     });
                 });
             }
-        };
-        App.prototype.subscribe = function () {
-            var _this = this;
-            navigator.serviceWorker.ready.then(function (serviceWorkerRegistration) {
-                serviceWorkerRegistration.pushManager.subscribe({ userVisibleOnly: true }).then(function (subscription) {
-                    if (!subscription)
-                        return;
-                    _this.registerClient(subscription.subscriptionId);
-                }).catch(function (e) {
-                });
-            });
         };
         App.prototype.registerClient = function (subscriptionId) {
             var client = new GrowthPush.Client(JSON.parse(localStorage.getItem('growthpush-client')));
