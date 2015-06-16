@@ -10,9 +10,11 @@
         applicationId: 4789,
         secret: 'QZCw2iFcENvof1U9deiJwyzbweiYt23W',
         environment: 'development',
-        receiver: './js/growthpush-receiver.js'
+        receiver: '/js/growthpush-receiver.js'
       });
       GrowthPush.app.initialize();
+      GrowthPush.app.tag('useragent', window.navigator.userAgent.toLowerCase());
+      GrowthPush.app.trackEvent('Launch',null);
     }
   </script>
   </body>

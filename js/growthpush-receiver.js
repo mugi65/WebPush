@@ -5,10 +5,10 @@
 /// <reference path="./es6-promise/es6-promise.d.ts" />
 /// <reference path="libs/ServiceWorker.ts" />
 var GrowthPushWebSetting = {
-    iconImage: './img/gp_icon.png',
-    title: 'YOUR_APP_NAME',
-    applicationId: 1,
-    secret: '9TnH8Y3He22BV0SzGXH832Gb3qBuq3p4'
+    iconImage: '/img/push_icon.png',
+    title: 'mugi65.github.io',
+    applicationId: 4789,
+    secret: 'QZCw2iFcENvof1U9deiJwyzbweiYt23W'
 };
 self.addEventListener('push', function (event) {
     event.waitUntil(self.registration.pushManager.getSubscription().then(function (subscription) {
