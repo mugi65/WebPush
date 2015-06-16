@@ -318,7 +318,9 @@ var GrowthPush;
                         return;
                     }
                     navigator.serviceWorker.ready.then(function (serviceWorkerRegistration) {
+                        console.log(serviceWorkerRegistration);
                         serviceWorkerRegistration.pushManager.getSubscription().then(function (subscription) {
+                            console.log(subscription);
                             if (!subscription) {
                                 _this.subscribe();
                                 return;
