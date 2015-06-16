@@ -320,7 +320,12 @@ var GrowthPush;
                     registration.pushManager.getSubscription().then(function (subscription) {
                         console.log(subscription);
                         if (!subscription) {
-                            _this.subscribe();
+                            registration.pushManager.subscribe({ userVisibleOnly: true }).then(function (subscription) {
+                                if (!subscription)
+                                    return;
+                                _this.registerClient(subscription.subscriptionId);
+                            }).catch(function (e) {
+                            });
                             return;
                         }
                         _this.registerClient(subscription.subscriptionId);
