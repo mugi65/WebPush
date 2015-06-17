@@ -10,9 +10,10 @@ var GrowthPushWebSetting = {
     applicationId: 4789,
     secret: 'QZCw2iFcENvof1U9deiJwyzbweiYt23W'
 };
+
 self.addEventListener('push', function (event) {
     event.waitUntil(self.registration.pushManager.getSubscription().then(function (subscription) {
-        self.fetch('https://api.growthpush.com/1/trials/cors?token=' + subscription.subscriptionId + '&applicationId=' + GrowthPushWebSetting.applicationId + '&secret=' + GrowthPushWebSetting.secret)
+        return fetch('https://api.growthpush.com/1/trials/cors?token=' + subscription.subscriptionId + '&applicationId=' + GrowthPushWebSetting.applicationId + '&secret=' + GrowthPushWebSetting.secret)
             .then(function (response) {
             return response.json();
         }).catch(function (response) {
@@ -29,6 +30,7 @@ self.addEventListener('push', function (event) {
         });
     }));
 }, false);
+
 self.addEventListener('notificationclick', function (event) {
     event.notification.close();
     event.waitUntil(clients.matchAll({ type: 'window' }).then(function (clientList) {
