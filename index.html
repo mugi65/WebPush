@@ -3,20 +3,30 @@
     <link rel="manifest" href="/config/manifest.json">
   </head>
   <body>
-  <script src="/js/growthpush.js"></script>
   <script>
-    if(GrowthPush){
-      GrowthPush.app = new GrowthPush.App({
-        applicationId: 4789,
-        secret: 'QZCw2iFcENvof1U9deiJwyzbweiYt23W',
+  (function () {
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.async = true;
+    script.src = '/js/growthpush.min.js';
+    document.getElementsByTagName('script')[0].parentNode.appendChild(script);
+  })();
+
+  document.addEventListener('growthpushReady', function () {
+    GrowthPush.init({
+      applicationId: 7700,
+        credentialId: 'FD2w93wXcWlb68ILOObsKz5P3af9oVMo',
         environment: 'development',
-        receiver: '/js/growthpush-receiver.js'
-      });
-      GrowthPush.app.initialize();
-      GrowthPush.app.tag('useragent', window.navigator.userAgent.toLowerCase());
-      GrowthPush.app.trackEvent('Launch',null);
-    }
-  </script>
+        receiver: '/js/growthpush-sw.js',
+        appName:  'mugi65.github.io',
+        icno: '/img/push_icon.png',
+        clickEventName: 'pv'
+    });
+
+    // Request permission
+    GrowthPush.register();
+  });
+</script>
   <script type="text/javascript">(function(){var a;a=function(){var a;return a=a||[],function(){var b,c,d,e;for(c=["init","start","stop","user","track","action","event","goal","chat","buy","page","view","admin","group","alias","ready","link","form","click","submit","cmd","emit","on","send","css","js","style","option","get","set"],b=function(b){return function(){return a.push([b].concat(Array.prototype.slice.call(arguments,0)))}},d=0,e=[];d<c.length;)a[c[d]]=b(c[d]),e.push(d++);return e}(),a.init=function(b,c){var d,e;return a.api_key=b,a.options=c||{},e=document.createElement("script"),e.type="text/javascript",e.async=!0,e.charset="utf-8",e.src="https://static.karte.io/libs/tracker.js",d=document.getElementsByTagName("script")[0],d.parentNode.insertBefore(e,d)},a},(window.karte_tracker_names||["tracker"]).map(function(b){return window[b]=a()})}).call(this);tracker.init("1c73266bb4b5bc55a28a74961e1345d6");</script>
   </body>
 </html>
